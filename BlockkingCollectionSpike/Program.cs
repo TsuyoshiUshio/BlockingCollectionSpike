@@ -8,7 +8,7 @@ namespace BlockingCollectionSpike
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             int capacity = 3;
             // Blocking Collection 
@@ -20,7 +20,11 @@ namespace BlockingCollectionSpike
                 while (true)
                 {
                     string command = Console.ReadLine();
-                    if (command.Contains("quit")) break;
+                    if (command.Contains("quit"))
+                    {
+                        blockingCollection.CompleteAdding();
+                        break;
+                    }
                     if (command.Contains("cancel"))
                     {
                         Console.WriteLine("Cancelling ...");
@@ -38,21 +42,21 @@ namespace BlockingCollectionSpike
                     }
                 }
             });
-            Task consumerAThread = Task.Factory.StartNew(async () =>
+            Task consumerAThread = Task.Factory.StartNew(() =>
             {
                 while (true)
                 {
-                    if (blockingCollection.IsCompleted) break;
+                    if (blockingCollection.IsCompleted && blockingCollection.Count == 0) break;
                     string command = blockingCollection.Take();
                     Console.WriteLine($"ConsumerA: Take Received: {command}");
-                    await Task.Delay(TimeSpan.FromSeconds(10));
+                    Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
                 }
             });
-            Task consumerBThread = Task.Factory.StartNew(async () =>
+            Task consumerBThread = Task.Factory.StartNew(() =>
             {
                 while (true)
                 {
-                    if (blockingCollection.IsCompleted) break;
+                    if (blockingCollection.IsCompleted && blockingCollection.Count == 0) break;
                     string command;
                     try
                     {
@@ -69,10 +73,11 @@ namespace BlockingCollectionSpike
                         Console.WriteLine($"ConsumerB: Task is cancelled.: {e.Message}");
                         break;
                     }
-                    await Task.Delay(TimeSpan.FromSeconds(10));
+                    Task.Delay(TimeSpan.FromSeconds(10)).GetAwaiter().GetResult();
                 }
             });
             Task.WaitAll(producerThread, consumerAThread, consumerBThread);
+            Console.WriteLine("All done");
         }
     }
 }
