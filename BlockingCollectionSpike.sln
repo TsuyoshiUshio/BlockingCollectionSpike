@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockkingCollectionSpike", "BlockkingCollectionSpike\BlockkingCollectionSpike.csproj", "{B842FD0E-CC20-4CFC-9B83-2729C9BB811F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B842FD0E-CC20-4CFC-9B83-2729C9BB811F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B842FD0E-CC20-4CFC-9B83-2729C9BB811F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B842FD0E-CC20-4CFC-9B83-2729C9BB811F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B842FD0E-CC20-4CFC-9B83-2729C9BB811F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C803F484-442F-4B10-97DE-6CC0AB1C9FF5}
+	EndGlobalSection
+EndGlobal
